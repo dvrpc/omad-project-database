@@ -276,6 +276,7 @@
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.2.0/respond.js"></script>
+    <script src="config.js"></script>
 
 </head>
 
@@ -727,7 +728,7 @@
 
         // Basemap Layers
         //   var mapquestOSM =  L.tileLayer.provider('MapBox.crvanpollard.heonp4ob');
-        var CartoDB_Positron = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
+        var CartoDB_Positron = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png?key=' + env.CARTO_API_KEY, {
             maxZoom: 18, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attribution">CARTO</a>'
         });
 
@@ -864,7 +865,7 @@
             }
         });
 
-           $.getJSON("https://services1.arcgis.com/LWtWv6q6BJyKidj8/ArcGIS/rest/services/DVRPC_Boundaries/FeatureServer/1/query?where=DVRPC_REG+%3D+%27Yes%27&outFields=*&outSR=4326&f=pgeojson", function (data) {
+           $.getJSON("https://arcgis.dvrpc.org/portal/rest/services/boundaries/countyboundaries/FeatureServer/0/query?where=dvrpc_reg+%3D+%27Yes%27&outFields=*&outSR=4326&f=geojson", function (data) {
             DVRPC.addData(data);
         });
 
